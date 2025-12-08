@@ -197,27 +197,30 @@ loadApplicantsToTable();
         JOptionPane.showMessageDialog(this, "Fill both fields!");
         return;
     }
+
+    // Check for duplicates using a map for faster lookup
     if (DataStore.applicantMap.containsKey(name.toLowerCase())) {
-    JOptionPane.showMessageDialog(this, "Applicant already registered!");
-    return;
-}
+        JOptionPane.showMessageDialog(this, "Applicant already registered!");
+        return;
+    }
 
-Applicant app = new Applicant(name, skill);
-DataStore.applicantList.add(app);
-DataStore.applicantMap.put(name.toLowerCase(), app);
+    // Create new applicant
+    Applicant app = new Applicant(name, skill);
 
-    // ✅ Save to global list
-    DataStore.applicantList.add(new Applicant(name, skill));
+    // Add to list and map
+    DataStore.applicantList.add(app);
+    DataStore.applicantMap.put(name.toLowerCase(), app);
 
-    // ✅ Show immediately in table
+    // Show immediately in table
     javax.swing.table.DefaultTableModel model =
             (javax.swing.table.DefaultTableModel) jobTable.getModel();
     model.addRow(new Object[]{name, skill});
 
     JOptionPane.showMessageDialog(this, "Applicant Registered!");
 
+    // Clear input fields
     jobtitle.setText("");
-    RequiredSkill.setText("");     // TODO add your handling code here:
+    RequiredSkill.setText("");    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

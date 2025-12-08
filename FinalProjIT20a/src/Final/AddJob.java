@@ -190,34 +190,37 @@ loadJobsToTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  String title = jobtitle.getText().trim();
+ String title = jobtitle.getText().trim();
     String skill = RequiredSkill.getText().trim();
 
+    // Validation
     if (title.isEmpty() || skill.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Fill in both fields!");
+        JOptionPane.showMessageDialog(this, "Fill in both fields!");
         return;
     }
+
+    // Duplicate check
     if (DataStore.jobMap.containsKey(title.toLowerCase())) {
-    JOptionPane.showMessageDialog(this, "Job already exists!");
-    return;
-}
+        JOptionPane.showMessageDialog(this, "Job already exists!");
+        return;
+    }
 
-Job job = new Job(title, skill);
-DataStore.jobList.add(job);
-DataStore.jobMap.put(title.toLowerCase(), job);
+    // Create job once
+    Job job = new Job(title, skill);
 
-    // Save job to global list (KEEP THIS ✅)
-    DataStore.jobList.add(new Job(title, skill));
+    // Store once
+    DataStore.jobList.add(job);
+    DataStore.jobMap.put(title.toLowerCase(), job);
 
-    // ✅ ADD THIS PART
+    // Add to table
     DefaultTableModel model = (DefaultTableModel) jobTable.getModel();
     model.addRow(new Object[]{title, skill});
 
-    javax.swing.JOptionPane.showMessageDialog(this, "Job Added!");
-    
+    JOptionPane.showMessageDialog(this, "Job Added!");
 
+    // Clear fields
     jobtitle.setText("");
-    RequiredSkill.setText("");// TODO add your handling code here:
+    RequiredSkill.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
