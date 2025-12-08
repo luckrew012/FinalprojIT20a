@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Final;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author bmang
- */
 public class AddJob extends javax.swing.JFrame {
 
     /**
@@ -15,7 +13,33 @@ public class AddJob extends javax.swing.JFrame {
      */
     public AddJob() {
         initComponents();
+        
+        jobTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {},
+        new String [] { "Job Title", "Required Skill" }
+    ));
+        DataStore.insertionSortJobs();
+loadJobsToTable();
     }
+    private void loadJobs() {
+    DefaultTableModel model = (DefaultTableModel) jobTable.getModel();
+    model.setRowCount(0); // clear table
+
+    for (Job job : DataStore.jobList) {
+        model.addRow(new Object[]{job.getTitle(), job.getSkill()});
+    }
+}
+    private void loadJobsToTable() {
+    DefaultTableModel model = (DefaultTableModel) jobTable.getModel();
+    model.setRowCount(0); // clear table
+
+    for (Job job : DataStore.jobList) {
+        model.addRow(new Object[] {
+            job.getTitle(),
+            job.getSkill()
+        });
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +59,8 @@ public class AddJob extends javax.swing.JFrame {
         RequiredSkill = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jobTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +88,11 @@ public class AddJob extends javax.swing.JFrame {
         jLabel3.setText("Required Skill");
 
         jButton1.setText("Add Job");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,6 +131,17 @@ public class AddJob extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
+        jobTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Job Title", "Required Skill"
+            }
+        ));
+        jScrollPane1.setViewportView(jobTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,13 +150,17 @@ public class AddJob extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(210, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,6 +168,8 @@ public class AddJob extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(15, 15, 15))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,6 +188,37 @@ public class AddJob extends javax.swing.JFrame {
          jobil.setVisible(true);
          dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  String title = jobtitle.getText().trim();
+    String skill = RequiredSkill.getText().trim();
+
+    if (title.isEmpty() || skill.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Fill in both fields!");
+        return;
+    }
+    if (DataStore.jobMap.containsKey(title.toLowerCase())) {
+    JOptionPane.showMessageDialog(this, "Job already exists!");
+    return;
+}
+
+Job job = new Job(title, skill);
+DataStore.jobList.add(job);
+DataStore.jobMap.put(title.toLowerCase(), job);
+
+    // Save job to global list (KEEP THIS ✅)
+    DataStore.jobList.add(new Job(title, skill));
+
+    // ✅ ADD THIS PART
+    DefaultTableModel model = (DefaultTableModel) jobTable.getModel();
+    model.addRow(new Object[]{title, skill});
+
+    javax.swing.JOptionPane.showMessageDialog(this, "Job Added!");
+    
+
+    jobtitle.setText("");
+    RequiredSkill.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +264,8 @@ public class AddJob extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jobTable;
     private javax.swing.JTextField jobtitle;
     // End of variables declaration//GEN-END:variables
 }
