@@ -58,19 +58,19 @@ public class SignupDashboard extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Name");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 208, 37, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 37, -1));
 
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameActionPerformed(evt);
             }
         });
-        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 228, 298, -1));
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 298, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 281, 81, -1));
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 301, 298, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 81, -1));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 298, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 103, 102));
 
@@ -104,12 +104,12 @@ public class SignupDashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
                 .addComponent(signin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 0, 200, 470));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 200, 490));
 
         jButton2.setBackground(new java.awt.Color(0, 103, 102));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,18 +119,18 @@ public class SignupDashboard extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 365, 82, 32));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 82, 32));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 103, 102));
         jLabel3.setText("BARANGAY MATCH JOB");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, 20));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/job_employment_find_recuitment_seeker_icon_192532.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 60, 50));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 60, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/white.jpg"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 430, 470));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -20, 430, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
