@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Final;
 
-/**
- *
- * @author bmang
- */
+import javax.swing.JOptionPane;
 public class Matchjob extends javax.swing.JFrame {
 
     /**
@@ -15,7 +9,27 @@ public class Matchjob extends javax.swing.JFrame {
      */
     public Matchjob() {
         initComponents();
+
+    jobTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][] {},
+        new String[] { "Name", "Job" }
+    ));
+
+    loadMatchResults();
     }
+    private void loadMatchResults() {
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) jobTable.getModel();
+
+    model.setRowCount(0);
+
+    for (MatchResult m : DataStore.matchResults) {
+        model.addRow(new Object[]{
+            m.getName(),
+            m.getJob()
+        });
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +41,19 @@ public class Matchjob extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
 <<<<<<< HEAD
         jPanel1 = new javax.swing.JPanel();
 =======
+=======
+>>>>>>> 3f75e7cac35b9de8b425a72f2c69e943e6985337
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jobTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 >>>>>>> dde48ed56af03f671135e1e9d05c9e03ad2b4250
@@ -43,41 +61,69 @@ public class Matchjob extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(0, 103, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Job Matching Results");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 46, 122, -1));
-
         jLabel2.setBackground(new java.awt.Color(153, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 91, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 91, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, -1));
 
-        jLabel3.setText("Skill");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 71, -1));
-
-        jTextField1.setText("kristian only");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 90, 20));
-
-        jTextField2.setText("full stack developer");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 90, -1));
-
-        jPanel2.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("Job Matching Results");
+
+        jobTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Job"
+            }
+        ));
+        jScrollPane1.setViewportView(jobTable);
+
+        jButton2.setBackground(new java.awt.Color(0, 103, 102));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Home");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(0, 7, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 180, 210));
-
-        jButton2.setText("Home");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 270, 340));
 
         jButton1.setText("Match Job");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +131,7 @@ public class Matchjob extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 91, -1));
 
 <<<<<<< HEAD
         jLabel1.setText("Job Matching Results");
@@ -106,6 +153,7 @@ public class Matchjob extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
 <<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,14 +192,58 @@ public class Matchjob extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(24, 24, 24))
+=======
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> 3f75e7cac35b9de8b425a72f2c69e943e6985337
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+ String name = jTextField1.getText().trim();
+
+    if (name.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Enter name to match!");
+        return;
+    }
+
+    // ✅ Find applicant
+    Applicant target = DataStore.applicantMap.get(name.toLowerCase());
+    if (target == null) {
+        JOptionPane.showMessageDialog(this, "Applicant not found!");
+        return;
+        
+    }
+    
+
+    // ✅ Match job by skill
+    String matchedJob = null;
+    for (Job j : DataStore.jobList) {
+        if (j.getSkill().equalsIgnoreCase(target.getSkill())) {
+            matchedJob = j.getTitle();
+            break;
+        }
+    }
+
+    // ✅ Display result
+    DataStore.matchResults.add(
+    new MatchResult(target.getName(),
+        matchedJob != null ? matchedJob : "No matching job")
+); 
+    loadMatchResults();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        home jobillee = new home();
+         jobillee.setVisible(true);
+         dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,11 +288,15 @@ public class Matchjob extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
 =======
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+<<<<<<< HEAD
     private javax.swing.JTextField jTextField2;
 >>>>>>> dde48ed56af03f671135e1e9d05c9e03ad2b4250
+=======
+    private javax.swing.JTable jobTable;
+>>>>>>> 3f75e7cac35b9de8b425a72f2c69e943e6985337
     // End of variables declaration//GEN-END:variables
 }
