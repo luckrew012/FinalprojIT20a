@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Final;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AddJob extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddJob
-     */
+    
     public AddJob() {
         initComponents();
         

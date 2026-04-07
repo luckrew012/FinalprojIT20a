@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 
 public class DataStore {
-     public static ArrayList<Job> jobList = new ArrayList<>();
-
-  
+   
+    
+    public static ArrayList<Job> jobList = new ArrayList<>();
     public static ArrayList<Applicant> applicantList = new ArrayList<>();
     public static ArrayList<MatchResult> matchResults = new ArrayList<>();
     
